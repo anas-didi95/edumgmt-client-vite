@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+    command: sleep infinity
+    logging:
+      driver: local
+    volumes:
+      - "./:/home/node/workspace/:z"
