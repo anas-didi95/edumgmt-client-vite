@@ -1,14 +1,12 @@
 import React from "react";
-import "./styles/app.scss"
+import "./styles/app.scss";
 import PWABadge from "./PWABadge";
 
 const App: React.FC<unknown> = () => (
   <>
     <section className="section">
       <div className="container">
-        <h1 className="title">
-          Hello World
-        </h1>
+        <h1 className="title">Hello World</h1>
         <p className="subtitle">
           My first website with <strong>Bulma</strong>!
         </p>
@@ -29,6 +27,6 @@ const App: React.FC<unknown> = () => (
     </section>
     <PWABadge />
   </>
-)
+);
 
 export default App;
