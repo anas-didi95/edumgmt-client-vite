@@ -3,6 +3,7 @@ import "./styles/app.scss";
 import PWABadge from "./PWABadge";
 import Navbar from "./components/Navbar";
 import Breadcrumb from "./components/Breadcrumb";
+import Card from "./components/Card";
 
 const App: React.FC<unknown> = () => (
   <>
@@ -13,6 +14,8 @@ const App: React.FC<unknown> = () => (
       <section className="section">
         <div className="container">
           <Breadcrumb />
+          <br />
+          <Card />
         </div>
       </section>
     </main>
