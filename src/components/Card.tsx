@@ -1,29 +1,20 @@
-import React from "react"
+import React, { ReactNode } from "react"
 
-const Card: React.FC<unknown> = () => (
+interface ICard {
+  title: string
+  children: ReactNode
+}
+
+const Card: React.FC<ICard> = ({ title, children }) => (
   <div className="card">
-    <header className="card-header">
-      <p className="card-header-title">Component</p>
-      <button className="card-header-icon" aria-label="more options">
-        <span className="icon">
-          <i className="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </button>
-    </header>
+    {!!title && (
+      <header className="card-header">
+        <p className="card-header-title">{title}</p>
+      </header>
+    )}
     <div className="card-content">
-      <div className="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris.
-        <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-        <br />
-        <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
+      {children}
     </div>
-    <footer className="card-footer">
-      <a href="#" className="card-footer-item">Save</a>
-      <a href="#" className="card-footer-item">Edit</a>
-      <a href="#" className="card-footer-item">Delete</a>
-    </footer>
   </div>
 )
 
