@@ -6,6 +6,7 @@ import Breadcrumb from "./components/Breadcrumb";
 import Card from "./components/Card";
 import FormInput from "./components/FormInput";
 import ButtonGroup from "./components/ButtonGroup";
+import Table from "./components/Table";
 
 const App: React.FC<unknown> = () => (
   <>
@@ -34,6 +35,19 @@ const App: React.FC<unknown> = () => (
                 ]} />
               </div>
             </div>
+          </Card>
+          <br />
+          <Card title="">
+            <Table headerList={["Head 1", "Head 2"]}>
+              <tr>
+                <td>Val 1</td>
+                <td>Val 2</td>
+              </tr>
+              <tr>
+                <td>Val 3</td>
+                <td>Val 4</td>
+              </tr>
+            </Table>
           </Card>
         </div>
       </section>
