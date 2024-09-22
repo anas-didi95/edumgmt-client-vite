@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import "./styles/app.scss";
 import PWABadge from "./PWABadge";
 import Navbar from "./components/Navbar";
@@ -8,7 +8,7 @@ import FormInput from "./components/FormInput";
 import ButtonGroup from "./components/ButtonGroup";
 import Table from "./components/Table";
 
-const App: React.FC<unknown> = () => (
+const App: FC<unknown> = () => (
   <>
     <header>
       <Navbar />

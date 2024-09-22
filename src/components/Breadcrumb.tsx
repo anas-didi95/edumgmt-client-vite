@@ -1,6 +1,6 @@
-import React from "react"
+import { FC } from "react"
 
-const Breadcrumb: React.FC<unknown> = () => (
+const Breadcrumb: FC<unknown> = () => (
   <nav className="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
     <ul>
       <li><a href="#">Bulma</a></li>

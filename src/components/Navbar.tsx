@@ -1,6 +1,6 @@
-import React from "react"
+import { FC } from "react"
 
-const Navbar: React.FC<unknown> = () => (
+const Navbar: FC<unknown> = () => (
   <nav className="navbar is-spaced is-link" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
       <a className="navbar-item" href="https://bulma.io">

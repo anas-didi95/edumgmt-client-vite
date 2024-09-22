@@ -1,4 +1,4 @@
-import React from "react"
+import { FC } from "react"
 
 interface IButtonGroup {
   buttonList: {
@@ -7,7 +7,7 @@ interface IButtonGroup {
   }[]
 }
 
-const ButtonGroup: React.FC<IButtonGroup> = ({ buttonList }) => (
+const ButtonGroup: FC<IButtonGroup> = ({ buttonList }) => (
   <div className="buttons is-right">
     {buttonList.map(({ label, type }, i) => (
       <button key={`${label}${type}${i}`} className={`button ${!!type && "is-" + type}`}>{label}</button>

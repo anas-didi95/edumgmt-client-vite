@@ -1,4 +1,4 @@
-import React from "react"
+import { FC } from "react"
 
 interface IFormInput {
   label: string
@@ -10,7 +10,7 @@ interface IFormInput {
   }
 }
 
-const FormInput: React.FC<IFormInput> = ({ label, type, placeholder, message }) => (
+const FormInput: FC<IFormInput> = ({ label, type, placeholder, message }) => (
   <div className="field">
     <label className="label">{label}</label>
     <div className="control">

@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react"
+import { FC, ReactNode } from "react"
 
 interface ITable {
   headerList: string[]
   children: ReactNode
 }
 
-const Table: React.FC<ITable> = ({ headerList, children }) => (
+const Table: FC<ITable> = ({ headerList, children }) => (
   <div className="table-container">
     <table className="table is-striped is-hoverable is-fullwidth">
       <thead>
@@ -23,4 +23,3 @@ const Table: React.FC<ITable> = ({ headerList, children }) => (
 )
 
 export default Table
-
