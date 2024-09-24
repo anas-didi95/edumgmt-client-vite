@@ -12,11 +12,13 @@
     "format:check": "prettier src/**/*.{js,ts,jsx,tsx,css,sass,scss} --check"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
     "bulma": "^1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
