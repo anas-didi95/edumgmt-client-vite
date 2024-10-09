@@ -1,4 +1,5 @@
 .vscode-server/
+.env
 
 # Logs
 logs
