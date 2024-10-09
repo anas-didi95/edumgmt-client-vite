@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "./styles/app.scss";
 import PWABadge from "./PWABadge";
 import Navbar from "./components/Navbar";
@@ -8,34 +8,18 @@ import FormInput from "./components/FormInput";
 import ButtonGroup from "./components/ButtonGroup";
 import Table from "./components/Table";
 import { useQuery } from "@tanstack/react-query";
+import UserService from "./utils/services/UserService"
 
-async function findUser(): Promise<{
-  resultList?: { id: string; userId: string; name: string; roles: string[] }[];
-  pagination?: {
-    page: number,
-    totalPages: number,
-    recordsPerPage: number,
-    totalRecords: number
-  }
-}> {
-  try {
-    const res = await fetch("http://localhost/edumgmt/user?page=1&size=10", {
-      headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlZHVtZ210LWUwZWU2NGY5ODciLCJzdWIiOiJzdXBlci1hZG1pbiIsIm5iZiI6MTcyNzI3Mzg0NywiZXhwIjoxNzI3Mjc3NDQ3LCJpYXQiOjE3MjcyNzM4NDcsInJvbGVzIjpbIlJPTEVfU1VQRVJBRE1JTiJdfQ.gF84JxpRbbJzNxiN6pxMhLrXPMaAX3zyfwJ9wGlvvyc",
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    });
-    const resBody = await res.json()
-    return resBody
-  } catch (error) {
-    console.error("Fail to find user!", error)
-    throw error;
-  }
+type SearchFormType = {
+  page: number;
+  size: number;
+  userId: string;
 }
 
 const App: FC<unknown> = () => {
-  const { data } = useQuery({ queryKey: ["edumgmt", "user"], queryFn: findUser })
+  const [searchForm, setSearchForm] = useState<SearchFormType>({ page: 1, size: 10, userId: "" })
+  const [search, setSearch] = useState<SearchFormType>({ ...searchForm })
+  const { data } = useQuery({ queryKey: ["UserService.searchUserList", search.page, search.size, search.userId], queryFn: () => UserService.searchUserList(search.page, search.size, search.userId) })
 
   return (
     <>
@@ -50,7 +34,9 @@ const App: FC<unknown> = () => {
             <Card title="Search User">
               <div className="columns">
                 <div className="column is-4">
-                  <FormInput label="User ID" type="text" />
+                  <FormInput label="User ID" type="text" onChange={(e) =>
+                    setSearchForm(prev => ({ ...prev, userId: (e.target as HTMLInputElement).value }))
+                  } />
                 </div>
                 <div className="column is-4">
                   <FormInput label="Name" type="text" />
@@ -60,7 +46,7 @@ const App: FC<unknown> = () => {
                 <div className="column">
                   <ButtonGroup buttonList={[
                     { label: "Reset" },
-                    { label: "Search", type: "success" }
+                    { label: "Search", type: "success", onClick: () => setSearch({ ...searchForm }) }
                   ]} />
                 </div>
               </div>
