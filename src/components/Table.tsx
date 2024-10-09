@@ -1,8 +1,8 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode } from "react";
 
 interface ITable {
-  headerList: string[]
-  children: ReactNode
+  headerList: string[];
+  children: ReactNode;
 }
 
 const Table: FC<ITable> = ({ headerList, children }) => (
@@ -15,11 +15,9 @@ const Table: FC<ITable> = ({ headerList, children }) => (
           ))}
         </tr>
       </thead>
-      <tbody>
-        {children}
-      </tbody>
+      <tbody>{children}</tbody>
     </table>
   </div>
-)
+);
 
-export default Table
+export default Table;

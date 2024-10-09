@@ -8,18 +8,31 @@ import FormInput from "./components/FormInput";
 import ButtonGroup from "./components/ButtonGroup";
 import Table from "./components/Table";
 import { useQuery } from "@tanstack/react-query";
-import UserService from "./utils/services/UserService"
+import UserService from "./utils/services/UserService";
 
 type SearchFormType = {
   page: number;
   size: number;
   userId: string;
-}
+};
 
 const App: FC<unknown> = () => {
-  const [searchForm, setSearchForm] = useState<SearchFormType>({ page: 1, size: 10, userId: "" })
-  const [search, setSearch] = useState<SearchFormType>({ ...searchForm })
-  const { data } = useQuery({ queryKey: ["UserService.searchUserList", search.page, search.size, search.userId], queryFn: () => UserService.searchUserList(search.page, search.size, search.userId) })
+  const [searchForm, setSearchForm] = useState<SearchFormType>({
+    page: 1,
+    size: 10,
+    userId: "",
+  });
+  const [search, setSearch] = useState<SearchFormType>({ ...searchForm });
+  const { data } = useQuery({
+    queryKey: [
+      "UserService.searchUserList",
+      search.page,
+      search.size,
+      search.userId,
+    ],
+    queryFn: () =>
+      UserService.searchUserList(search.page, search.size, search.userId),
+  });
 
   return (
     <>
@@ -34,9 +47,16 @@ const App: FC<unknown> = () => {
             <Card title="Search User">
               <div className="columns">
                 <div className="column is-4">
-                  <FormInput label="User ID" type="text" onChange={(e) =>
-                    setSearchForm(prev => ({ ...prev, userId: (e.target as HTMLInputElement).value }))
-                  } />
+                  <FormInput
+                    label="User ID"
+                    type="text"
+                    onChange={(e) =>
+                      setSearchForm((prev) => ({
+                        ...prev,
+                        userId: (e.target as HTMLInputElement).value,
+                      }))
+                    }
+                  />
                 </div>
                 <div className="column is-4">
                   <FormInput label="Name" type="text" />
@@ -44,10 +64,16 @@ const App: FC<unknown> = () => {
               </div>
               <div className="columns">
                 <div className="column">
-                  <ButtonGroup buttonList={[
-                    { label: "Reset" },
-                    { label: "Search", type: "success", onClick: () => setSearch({ ...searchForm }) }
-                  ]} />
+                  <ButtonGroup
+                    buttonList={[
+                      { label: "Reset" },
+                      {
+                        label: "Search",
+                        type: "success",
+                        onClick: () => setSearch({ ...searchForm }),
+                      },
+                    ]}
+                  />
                 </div>
               </div>
             </Card>
@@ -72,7 +98,7 @@ const App: FC<unknown> = () => {
       </main>
       <PWABadge />
     </>
-  )
+  );
 };
 
 export default App;

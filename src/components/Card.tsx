@@ -1,8 +1,8 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode } from "react";
 
 interface ICard {
-  title: string
-  children: ReactNode
+  title: string;
+  children: ReactNode;
 }
 
 const Card: FC<ICard> = ({ title, children }) => (
@@ -12,10 +12,8 @@ const Card: FC<ICard> = ({ title, children }) => (
         <p className="card-header-title">{title}</p>
       </header>
     )}
-    <div className="card-content">
-      {children}
-    </div>
+    <div className="card-content">{children}</div>
   </div>
-)
+);
 
 export default Card;

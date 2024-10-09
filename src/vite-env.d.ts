@@ -2,9 +2,9 @@
 /// <reference types="vite-plugin-pwa/react" />
 
 interface ImportMetaEnv {
-  readonly VITE_APP_EDUMGMT_URL: string
+  readonly VITE_APP_EDUMGMT_URL: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }
