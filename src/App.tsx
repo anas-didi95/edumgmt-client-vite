@@ -45,37 +45,40 @@ const App: FC<unknown> = () => {
             <Breadcrumb />
             <br />
             <Card title="Search User">
-              <div className="columns">
-                <div className="column is-4">
-                  <FormInput
-                    label="User ID"
-                    type="text"
-                    onChange={(e) =>
-                      setSearchForm((prev) => ({
-                        ...prev,
-                        userId: (e.target as HTMLInputElement).value,
-                      }))
-                    }
-                  />
+              <form>
+                <div className="columns">
+                  <div className="column is-4">
+                    <FormInput
+                      label="User ID"
+                      type="text"
+                      onChange={(e) =>
+                        setSearchForm((prev) => ({
+                          ...prev,
+                          userId: (e.target as HTMLInputElement).value,
+                        }))
+                      }
+                    />
+                  </div>
+                  <div className="column is-4">
+                    <FormInput label="Name" type="text" />
+                  </div>
                 </div>
-                <div className="column is-4">
-                  <FormInput label="Name" type="text" />
+                <div className="columns">
+                  <div className="column">
+                    <ButtonGroup
+                      buttonList={[
+                        { type: "reset", label: "Reset" },
+                        {
+                          type: "submit",
+                          label: "Search",
+                          color: "success",
+                          onClick: () => setSearch({ ...searchForm }),
+                        },
+                      ]}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="columns">
-                <div className="column">
-                  <ButtonGroup
-                    buttonList={[
-                      { label: "Reset" },
-                      {
-                        label: "Search",
-                        type: "success",
-                        onClick: () => setSearch({ ...searchForm }),
-                      },
-                    ]}
-                  />
-                </div>
-              </div>
+              </form>
             </Card>
             {!!data && !!data.resultList && (
               <>

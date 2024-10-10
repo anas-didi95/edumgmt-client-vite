@@ -1,22 +1,20 @@
 import { FC } from "react";
+import Button, { IButton } from "./Button";
 
 interface IButtonGroup {
-  buttonList: {
-    label: string;
-    type?: "success" | "light";
-    onClick?: () => void;
-  }[];
+  buttonList: IButton[];
 }
 
 const ButtonGroup: FC<IButtonGroup> = ({ buttonList }) => (
   <div className="buttons is-right">
-    {buttonList.map(({ label, type, onClick }, i) => (
-      <button
+    {buttonList.map(({ type, label, color, onClick }, i) => (
+      <Button
         key={`${label}${type}${i}`}
-        className={`button ${!!type && "is-" + type}`}
-        onClick={onClick}>
-        {label}
-      </button>
+        type={type}
+        color={color}
+        onClick={onClick}
+        label={label}
+      />
     ))}
   </div>
 );
