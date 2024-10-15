@@ -8,15 +8,10 @@ import FormInput from "./components/FormInput";
 import ButtonGroup from "./components/ButtonGroup";
 import Table from "./components/Table";
 import UserService from "./utils/services/UserService";
-
-type SearchFormType = {
-  page: number;
-  size: number;
-  userId: string;
-};
+import { UserSearchType } from "./utils/types/UserType";
 
 const App: FC<unknown> = () => {
-  const [searchForm, setSearchForm] = useState<SearchFormType>({
+  const [searchForm, setSearchForm] = useState<UserSearchType>({
     page: 1,
     size: 10,
     userId: "",

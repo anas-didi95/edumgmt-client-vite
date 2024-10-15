@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { UserSearchType } from "../types/UserType";
+import type { UserSearchResultType, UserSearchType, } from "../types/UserType";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -12,14 +12,8 @@ const api = axios.create({
   },
 });
 
-type SearchFormType = {
-  page: number;
-  size: number;
-  userId: string;
-}
-  ;
-const useSearchUserList = (param: SearchFormType = { page: 1, size: 10, userId: "" }) => {
-  const [search, setSearch] = useState<SearchFormType>({ ...param })
+const useSearchUserList = (param: UserSearchType = { page: 1, size: 10, userId: "" }) => {
+  const [search, setSearch] = useState<UserSearchType>({ ...param })
   const { data } = useQuery({
     queryKey: [
       "UserService.searchUserList",
@@ -32,7 +26,7 @@ const useSearchUserList = (param: SearchFormType = { page: 1, size: 10, userId: 
         const response = await api.get(
           `?page=${search.page}&size=${search.size}&userId=${search.userId}`,
         );
-        const responseBody: UserSearchType = response.data;
+        const responseBody: UserSearchResultType = response.data;
         return responseBody;
       } catch (error) {
         console.log("Fail to search user!", error);

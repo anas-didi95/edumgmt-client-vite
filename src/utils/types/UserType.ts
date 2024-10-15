@@ -1,4 +1,10 @@
-export type UserSearchType = {
+import { SearchType } from "./CommonType";
+
+export type UserSearchType = SearchType & {
+  userId: string
+}
+
+export type UserSearchResultType = {
   resultList: [
     {
       id: string;
