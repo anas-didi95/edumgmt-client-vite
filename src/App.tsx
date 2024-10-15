@@ -16,7 +16,7 @@ const App: FC<unknown> = () => {
     size: 10,
     userId: "",
   });
-  const { setSearch, data } = UserService.useSearchUserList();
+  const { setSearch, data } = UserService.useSearchUserList({ ...searchForm });
 
   return (
     <>
