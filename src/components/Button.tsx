@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 
 export interface IButton {
   type: "button" | "submit" | "reset";
   label: string;
   color?: "success" | "light";
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
 const Button: FC<IButton> = ({ type, label, color, onClick }) => (

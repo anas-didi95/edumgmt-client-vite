@@ -1,30 +1,47 @@
 import axios from "axios";
 import type { UserSearchType } from "../types/UserType";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_APP_EDUMGMT_URL}/user`,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: "Bearer ...",
+    Authorization: "Bearer ..."
   },
 });
 
-const searchUserList = async (
-  page: number,
-  size: number,
-  userId: string,
-): Promise<UserSearchType> => {
-  try {
-    const response = await api.get(
-      `?page=${page}&size=${size}&userId=${userId}`,
-    );
-    const responseBody: UserSearchType = response.data;
-    return responseBody;
-  } catch (error) {
-    console.log("Fail to search user!", error);
-    return Promise.reject();
-  }
-};
+type SearchFormType = {
+  page: number;
+  size: number;
+  userId: string;
+}
+  ;
+const useSearchUserList = (param: SearchFormType = { page: 1, size: 10, userId: "" }) => {
+  const [search, setSearch] = useState<SearchFormType>({ ...param })
+  const { data } = useQuery({
+    queryKey: [
+      "UserService.searchUserList",
+      search.page,
+      search.size,
+      search.userId,
+    ],
+    queryFn: async () => {
+      try {
+        const response = await api.get(
+          `?page=${search.page}&size=${search.size}&userId=${search.userId}`,
+        );
+        const responseBody: UserSearchType = response.data;
+        return responseBody;
+      } catch (error) {
+        console.log("Fail to search user!", error);
+        return Promise.reject();
+      }
+    }
+  });
 
-export default { searchUserList };
+  return { search, setSearch, data }
+}
+
+export default { useSearchUserList };

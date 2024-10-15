@@ -7,7 +7,6 @@ import Card from "./components/Card";
 import FormInput from "./components/FormInput";
 import ButtonGroup from "./components/ButtonGroup";
 import Table from "./components/Table";
-import { useQuery } from "@tanstack/react-query";
 import UserService from "./utils/services/UserService";
 
 type SearchFormType = {
@@ -22,17 +21,7 @@ const App: FC<unknown> = () => {
     size: 10,
     userId: "",
   });
-  const [search, setSearch] = useState<SearchFormType>({ ...searchForm });
-  const { data } = useQuery({
-    queryKey: [
-      "UserService.searchUserList",
-      search.page,
-      search.size,
-      search.userId,
-    ],
-    queryFn: () =>
-      UserService.searchUserList(search.page, search.size, search.userId),
-  });
+  const { setSearch, data } = UserService.useSearchUserList()
 
   return (
     <>
@@ -72,7 +61,10 @@ const App: FC<unknown> = () => {
                           type: "submit",
                           label: "Search",
                           color: "success",
-                          onClick: () => setSearch({ ...searchForm }),
+                          onClick: (e) => {
+                            e.preventDefault();
+                            setSearch({ ...searchForm });
+                          }
                         },
                       ]}
                     />
