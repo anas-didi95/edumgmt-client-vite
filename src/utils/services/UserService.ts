@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { UserSearchResultType, UserSearchType, } from "../types/UserType";
+import type { UserSearchResultType, UserSearchType } from "../types/UserType";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -8,15 +8,17 @@ const api = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: "Bearer ..."
+    Authorization: "Bearer ...",
   },
 });
 
-const useSearchUserList = (param: UserSearchType = { page: 1, size: 10, userId: "" }) => {
-  const [search, setSearch] = useState<UserSearchType>({ ...param })
+const useSearchUserList = (
+  param: UserSearchType = { page: 1, size: 10, userId: "" },
+) => {
+  const [search, setSearch] = useState<UserSearchType>({ ...param });
   const { data } = useQuery({
     queryKey: [
-      "UserService.searchUserList",
+      "UserService.useSearchUserList",
       search.page,
       search.size,
       search.userId,
@@ -32,10 +34,10 @@ const useSearchUserList = (param: UserSearchType = { page: 1, size: 10, userId: 
         console.log("Fail to search user!", error);
         return Promise.reject();
       }
-    }
+    },
   });
 
-  return { search, setSearch, data }
-}
+  return { search, setSearch, data };
+};
 
 export default { useSearchUserList };
