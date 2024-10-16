@@ -1,22 +1,20 @@
 import { FC } from "react";
 
-const Breadcrumb: FC<unknown> = () => (
+interface IBreadcrumb {
+  breadcrumbList: string[];
+}
+const Breadcrumb: FC<IBreadcrumb> = ({ breadcrumbList }) => (
   <nav className="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
     <ul>
-      <li>
-        <a href="#">Bulma</a>
-      </li>
-      <li>
-        <a href="#">Documentation</a>
-      </li>
-      <li>
-        <a href="#">Components</a>
-      </li>
-      <li className="is-active">
-        <a href="#" aria-current="page">
-          Breadcrumb
-        </a>
-      </li>
+      {breadcrumbList.map((breadcrumb, idx, list) => (
+        <li
+          key={`breadcrumb${idx}`}
+          className={`${idx === list.length - 1 && "is-active"}`}>
+          <a href="#" aria-current={`${idx === list.length - 1 && "page"}`}>
+            {breadcrumb}
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 );
