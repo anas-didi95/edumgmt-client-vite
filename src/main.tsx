@@ -27,7 +27,6 @@ if (!rootElement.innerHTML) {
       <StrictMode>
         <RouterProvider router={router} />
       </StrictMode>
-    </QueryClientProvider>
-    ,
+    </QueryClientProvider>,
   );
 }

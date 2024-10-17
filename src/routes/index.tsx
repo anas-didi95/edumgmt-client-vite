@@ -1,28 +1,28 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
-import "../styles/app.scss"
-import Card from '../components/Card'
-import FormInput from '../components/FormInput'
-import ButtonGroup from '../components/ButtonGroup'
-import Table from '../components/Table'
-import UserService from '../utils/services/UserService'
-import { UserSearchType } from '../utils/types/UserType'
-import AppLayout from '../layouts/AppLayout'
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import "../styles/app.scss";
+import Card from "../components/Card";
+import FormInput from "../components/FormInput";
+import ButtonGroup from "../components/ButtonGroup";
+import Table from "../components/Table";
+import UserService from "../utils/services/UserService";
+import { UserSearchType } from "../utils/types/UserType";
+import AppLayout from "../layouts/AppLayout";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
-})
+});
 
 function App() {
   const [searchForm, setSearchForm] = useState<UserSearchType>({
     page: 1,
     size: 10,
-    userId: '',
-  })
-  const { setSearch, data } = UserService.useSearchUserList({ ...searchForm })
+    userId: "",
+  });
+  const { setSearch, data } = UserService.useSearchUserList({ ...searchForm });
 
   return (
-    <AppLayout breadcrumbList={['User', 'Search']}>
+    <AppLayout breadcrumbList={["User", "Search"]}>
       <Card title="Search User">
         <form>
           <div className="columns">
@@ -46,14 +46,14 @@ function App() {
             <div className="column">
               <ButtonGroup
                 buttonList={[
-                  { type: 'reset', label: 'Reset' },
+                  { type: "reset", label: "Reset" },
                   {
-                    type: 'submit',
-                    label: 'Search',
-                    color: 'success',
+                    type: "submit",
+                    label: "Search",
+                    color: "success",
                     onClick: (e) => {
-                      e.preventDefault()
-                      setSearch({ ...searchForm })
+                      e.preventDefault();
+                      setSearch({ ...searchForm });
                     },
                   },
                 ]}
@@ -66,7 +66,7 @@ function App() {
         <>
           <br />
           <Card title="">
-            <Table headerList={['No.', 'User Id', 'Name']}>
+            <Table headerList={["No.", "User Id", "Name"]}>
               {data.resultList.map((result, idx) => (
                 <tr key={result.id}>
                   <td>{idx + 1}</td>
@@ -79,7 +79,7 @@ function App() {
         </>
       )}
     </AppLayout>
-  )
+  );
 }
 
-export default App
+export default App;
