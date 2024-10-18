@@ -3,3 +3,11 @@
 :root {
   --bulma-body-background-color: var(--bulma-scheme-main-bis);
 }
+
+.alert--position {
+  position: absolute;
+  z-index: 100;
+  top: 15%;
+  left: 60%;
+  width: 40%;
+}

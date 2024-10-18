@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import Navbar from "../components/Navbar";
 import PWABadge from "../PWABadge";
 import Breadcrumb from "../components/Breadcrumb";
+import Alert from "../components/Alert";
 
 interface IAppLayout {
   children: ReactNode;
@@ -13,6 +14,9 @@ const AppLayout: FC<IAppLayout> = ({ children, breadcrumbList }) => (
       <Navbar />
     </header>
     <main>
+      <div className="container">
+        <Alert />
+      </div>
       <section className="section">
         <div className="container">
           <Breadcrumb breadcrumbList={breadcrumbList} />
