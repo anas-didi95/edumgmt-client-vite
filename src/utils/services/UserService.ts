@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { UserSearchResultType, UserSearchType } from "../types/UserType";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 const api = axios.create({
@@ -16,13 +16,9 @@ const useSearchUserList = (
   param: UserSearchType = { page: 1, size: 10, userId: "" },
 ) => {
   const [search, setSearch] = useState<UserSearchType>({ ...param });
+  const queryKey = useMemo(() => ["users", search.page, search.size, search.userId], [search.page, search.size, search.userId])
   const { data } = useQuery({
-    queryKey: [
-      "UserService.useSearchUserList",
-      search.page,
-      search.size,
-      search.userId,
-    ],
+    queryKey: queryKey,
     queryFn: async () => {
       try {
         const response = await api.get(
