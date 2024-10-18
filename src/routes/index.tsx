@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { FC } from "react";
 import "../styles/app.scss";
 import Card from "../components/Card";
 import FormInput from "../components/FormInput";
@@ -8,38 +8,33 @@ import Table from "../components/Table";
 import UserService from "../utils/services/UserService";
 import { UserSearchType } from "../utils/types/UserType";
 import AppLayout from "../layouts/AppLayout";
+import { useForm } from "react-hook-form";
 
-export const Route = createFileRoute("/")({
-  component: App,
-});
-
-function App() {
-  const [searchForm, setSearchForm] = useState<UserSearchType>({
-    page: 1,
-    size: 10,
-    userId: "",
-  });
-  const { setSearch, data } = UserService.useSearchUserList({ ...searchForm });
+const App: FC<unknown> = () => {
+  const { register, handleSubmit, getValues } = useForm<UserSearchType>({
+    defaultValues: {
+      page: 1,
+      size: 10,
+      userId: "",
+      name: ""
+    }
+  })
+  const { setSearch, data } = UserService.useSearchUserList(getValues());
 
   return (
     <AppLayout breadcrumbList={["User", "Search"]}>
       <Card title="Search User">
-        <form>
+        <form onSubmit={handleSubmit(setSearch)}>
           <div className="columns">
             <div className="column is-4">
               <FormInput
+                register={register("userId")}
                 label="User ID"
                 type="text"
-                onChange={(e) =>
-                  setSearchForm((prev) => ({
-                    ...prev,
-                    userId: (e.target as HTMLInputElement).value,
-                  }))
-                }
               />
             </div>
             <div className="column is-4">
-              <FormInput label="Name" type="text" />
+              <FormInput register={register("name")} label="Name" type="text" />
             </div>
           </div>
           <div className="columns">
@@ -51,10 +46,7 @@ function App() {
                     type: "submit",
                     label: "Search",
                     color: "success",
-                    onClick: (e) => {
-                      e.preventDefault();
-                      setSearch({ ...searchForm });
-                    },
+                    onClick: handleSubmit(setSearch)
                   },
                 ]}
               />
@@ -82,4 +74,6 @@ function App() {
   );
 }
 
-export default App;
+export const Route = createFileRoute("/")({
+  component: App,
+});

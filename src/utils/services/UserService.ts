@@ -13,7 +13,7 @@ const api = axios.create({
 });
 
 const useSearchUserList = (
-  param: UserSearchType = { page: 1, size: 10, userId: "" },
+  param: UserSearchType = { page: 1, size: 10, userId: "", name: "" },
 ) => {
   const [search, setSearch] = useState<UserSearchType>({ ...param });
   const queryKey = useMemo(() => ["users", search.page, search.size, search.userId], [search.page, search.size, search.userId])

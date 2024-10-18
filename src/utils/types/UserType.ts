@@ -2,6 +2,7 @@ import { SearchType } from "./CommonType";
 
 export type UserSearchType = SearchType & {
   userId: string;
+  name: string
 };
 
 export type UserSearchResultType = {

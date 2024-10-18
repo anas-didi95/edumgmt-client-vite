@@ -1,31 +1,33 @@
-import { FC, FormEvent } from "react";
+import { FC } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
+import { StyleStatus } from "../utils/types/CommonType";
 
 interface IFormInput {
+  register: UseFormRegisterReturn
   label: string;
   type: "text";
   placeholder?: string;
   message?: {
-    status: "success" | "danger" | "warning";
+    status: StyleStatus
     value: string;
   };
-  onChange?: (e: FormEvent<HTMLInputElement>) => void;
 }
 
 const FormInput: FC<IFormInput> = ({
+  register,
   label,
   type,
   placeholder,
   message,
-  onChange,
 }) => (
   <div className="field">
     <label className="label">{label}</label>
     <div className="control">
       <input
+        {...register}
         className="input"
         type={type}
         placeholder={placeholder ?? label}
-        onChange={onChange}
       />
     </div>
     {!!message && (
