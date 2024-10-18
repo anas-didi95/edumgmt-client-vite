@@ -11,7 +11,7 @@ import AppLayout from "../layouts/AppLayout";
 import { useForm } from "react-hook-form";
 
 const App: FC<unknown> = () => {
-  const { register, handleSubmit, getValues } = useForm<UserSearchType>({
+  const { register, handleSubmit, getValues, reset } = useForm<UserSearchType>({
     defaultValues: {
       page: 1,
       size: 10,
@@ -21,6 +21,8 @@ const App: FC<unknown> = () => {
   });
   const { setSearch, data } = UserService.useSearchUserList(getValues());
   const handleSearch = handleSubmit(setSearch);
+  const handleReset = () =>
+    reset({ ...getValues(), page: 1, userId: "", name: "" });
 
   return (
     <AppLayout breadcrumbList={["User", "Search"]}>
@@ -42,7 +44,7 @@ const App: FC<unknown> = () => {
             <div className="column">
               <ButtonGroup
                 buttonList={[
-                  { type: "reset", label: "Reset" },
+                  { type: "reset", label: "Reset", onClick: handleReset },
                   {
                     type: "submit",
                     label: "Search",

@@ -4,8 +4,8 @@ import { StyleStatus } from "../utils/types/CommonType";
 export interface IButton {
   type: "button" | "submit" | "reset";
   label: string;
+  onClick: (e: MouseEvent<HTMLElement>) => void;
   color?: StyleStatus;
-  onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
 const Button: FC<IButton> = ({ type, label, color, onClick }) => (
