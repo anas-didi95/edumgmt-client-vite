@@ -16,7 +16,10 @@ const useSearchUserList = (
   param: UserSearchType = { page: 1, size: 10, userId: "", name: "" },
 ) => {
   const [search, setSearch] = useState<UserSearchType>({ ...param });
-  const queryKey = useMemo(() => ["users", search.page, search.size, search.userId], [search.page, search.size, search.userId])
+  const queryKey = useMemo(
+    () => ["users", search.page, search.size, search.userId],
+    [search.page, search.size, search.userId],
+  );
   const { data } = useQuery({
     queryKey: queryKey,
     queryFn: async () => {
@@ -33,7 +36,7 @@ const useSearchUserList = (
     },
   });
 
-  return { search, setSearch, data };
+  return { search, setSearch, data, queryKey };
 };
 
 export default { useSearchUserList };

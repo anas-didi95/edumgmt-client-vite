@@ -16,15 +16,16 @@ const App: FC<unknown> = () => {
       page: 1,
       size: 10,
       userId: "",
-      name: ""
-    }
-  })
+      name: "",
+    },
+  });
   const { setSearch, data } = UserService.useSearchUserList(getValues());
+  const handleSearch = handleSubmit(setSearch);
 
   return (
     <AppLayout breadcrumbList={["User", "Search"]}>
       <Card title="Search User">
-        <form onSubmit={handleSubmit(setSearch)}>
+        <form onSubmit={handleSearch}>
           <div className="columns">
             <div className="column is-4">
               <FormInput
@@ -45,8 +46,8 @@ const App: FC<unknown> = () => {
                   {
                     type: "submit",
                     label: "Search",
-                    color: "success",
-                    onClick: handleSubmit(setSearch)
+                    color: "is-success",
+                    onClick: handleSearch,
                   },
                 ]}
               />
@@ -72,7 +73,7 @@ const App: FC<unknown> = () => {
       )}
     </AppLayout>
   );
-}
+};
 
 export const Route = createFileRoute("/")({
   component: App,

@@ -3,12 +3,12 @@ import { UseFormRegisterReturn } from "react-hook-form";
 import { StyleStatus } from "../utils/types/CommonType";
 
 interface IFormInput {
-  register: UseFormRegisterReturn
+  register: UseFormRegisterReturn;
   label: string;
   type: "text";
   placeholder?: string;
   message?: {
-    status: StyleStatus
+    status: StyleStatus;
     value: string;
   };
 }
@@ -30,9 +30,7 @@ const FormInput: FC<IFormInput> = ({
         placeholder={placeholder ?? label}
       />
     </div>
-    {!!message && (
-      <p className={`help is-${message.status}`}>{message.value}</p>
-    )}
+    {!!message && <p className={`help ${message.status}`}>{message.value}</p>}
   </div>
 );
 
