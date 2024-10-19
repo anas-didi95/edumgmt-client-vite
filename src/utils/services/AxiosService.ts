@@ -28,9 +28,13 @@ export const useAxios = (contextPath: string, basePath: string = "") => {
     },
     (error) => {
       console.error("[useAxios] Response error!", error);
-      const error2 = error as AxiosError;
-      const data = error2.response?.data as { message: string };
-      setMessage(data.message, "is-danger");
+      const { message } = (error as AxiosError).response?.data as {
+        message: string;
+      };
+      setMessage(
+        message ?? "General error! Please contact administrator for support.",
+        "is-danger",
+      );
       return Promise.reject(error);
     },
   );
