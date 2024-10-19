@@ -19,8 +19,9 @@ const App: FC<unknown> = () => {
       name: "",
     },
   });
-  const { setSearch, data } = UserService.useSearchUserList(getValues());
-  const handleSearch = handleSubmit(setSearch);
+  const { data, execute } = UserService.useSearchUserList(getValues());
+
+  const handleSearch = handleSubmit(execute);
   const handleReset = () =>
     reset({ ...getValues(), page: 1, userId: "", name: "" });
 
