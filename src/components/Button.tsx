@@ -9,10 +9,7 @@ export interface IButton {
 }
 
 const Button: FC<IButton> = ({ type, label, color, onClick }) => (
-  <button
-    type={type}
-    className={`button ${!!color && color}`}
-    onClick={onClick}>
+  <button type={type} className={`button ${color ?? ""}`} onClick={onClick}>
     {label}
   </button>
 );
