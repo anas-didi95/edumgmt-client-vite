@@ -12,11 +12,17 @@
 
 import { Route as rootRoute } from "./routes/__root";
 import { Route as IndexImport } from "./routes/index";
+import { Route as UserUserIdImport } from "./routes/user/$userId";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   path: "/",
+  getParentRoute: () => rootRoute,
+} as any);
+
+const UserUserIdRoute = UserUserIdImport.update({
+  path: "/user/$userId",
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -31,6 +37,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof IndexImport;
       parentRoute: typeof rootRoute;
     };
+    "/user/$userId": {
+      id: "/user/$userId";
+      path: "/user/$userId";
+      fullPath: "/user/$userId";
+      preLoaderRoute: typeof UserUserIdImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -38,32 +51,37 @@ declare module "@tanstack/react-router" {
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
+  "/user/$userId": typeof UserUserIdRoute;
 }
 
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
+  "/user/$userId": typeof UserUserIdRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
   "/": typeof IndexRoute;
+  "/user/$userId": typeof UserUserIdRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/";
+  fullPaths: "/" | "/user/$userId";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/";
-  id: "__root__" | "/";
+  to: "/" | "/user/$userId";
+  id: "__root__" | "/" | "/user/$userId";
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
+  UserUserIdRoute: typeof UserUserIdRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  UserUserIdRoute: UserUserIdRoute,
 };
 
 export const routeTree = rootRoute
@@ -78,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/user/$userId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/user/$userId": {
+      "filePath": "user/$userId.tsx"
     }
   }
 }

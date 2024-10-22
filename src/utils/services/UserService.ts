@@ -1,4 +1,8 @@
-import type { UserSearchResultType, UserSearchType } from "../types/UserType";
+import type {
+  UserFormType,
+  UserSearchResultType,
+  UserSearchType,
+} from "../types/UserType";
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAxios } from "./AxiosService";
@@ -13,7 +17,14 @@ const useSearchUserList = (
   const [search, setSearch] = useState<UserSearchType>({ ...param });
   const [enabled, setEnabled] = useState(false);
   const queryKey = useMemo(() => {
-    return ["users", search.page, search.size, search.userId, search.name];
+    return [
+      "user",
+      "search",
+      search.page,
+      search.size,
+      search.userId,
+      search.name,
+    ];
   }, [search.page, search.size, search.userId, search.name]);
   const { data } = useQuery({
     enabled,
@@ -42,4 +53,24 @@ const useSearchUserList = (
   return { search, data, queryKey, execute };
 };
 
-export default { useSearchUserList };
+const useGetUser = (userId: string) => {
+  const axios = useAxios(CONTEXT_PATH, BASE_PATH);
+  const queryKey = useMemo(() => ["user", userId], [userId]);
+  const { data } = useQuery({
+    queryKey,
+    queryFn: async () => {
+      try {
+        const response = await axios.get(`/${userId}`);
+        const responseBody: UserFormType = response.data;
+        return responseBody;
+      } catch (error) {
+        console.error("Fail to get user!", error);
+        return Promise.resolve();
+      }
+    },
+  });
+
+  return { data };
+};
+
+export default { useSearchUserList, useGetUser };

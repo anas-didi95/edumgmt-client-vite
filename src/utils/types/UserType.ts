@@ -21,3 +21,16 @@ export type UserSearchResultType = {
     totalRecords: number;
   };
 };
+
+export type UserFormType = {
+  id: string;
+  userId: string;
+  name: string;
+  roles: string[];
+  isDeleted: boolean;
+  version: number;
+  createdBy: string;
+  createdDate: Date;
+  updatedBy: string;
+  updatedDate: Date;
+};

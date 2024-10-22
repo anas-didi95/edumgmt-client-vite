@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { FC } from "react";
 import "../styles/app.scss";
 import Card from "../components/Card";
@@ -66,7 +66,9 @@ const App: FC<unknown> = () => {
               {data.resultList.map((result, idx) => (
                 <tr key={result.id}>
                   <td>{idx + 1}</td>
-                  <td>{result.userId}</td>
+                  <td>
+                    <Link to={`/user/${result.id}`}>{result.userId}</Link>
+                  </td>
                   <td>{result.name}</td>
                 </tr>
               ))}
