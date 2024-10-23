@@ -12,12 +12,12 @@ const UserFormPage: FC<unknown> = () => {
   const { data = {} as UserFormType } = UserService.useGetUser(userId);
   const { register, reset } = useForm<UserFormType>({
     defaultValues: useMemo(() => {
-      return data
+      return data;
     }, [data]),
   });
 
   useEffect(() => {
-    reset(data)
+    reset(data);
   }, [reset, data]);
 
   return (
