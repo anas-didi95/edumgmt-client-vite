@@ -18,7 +18,7 @@ const UserFormPage: FC<unknown> = () => {
 
   useEffect(() => {
     reset(data);
-  }, [reset, data]);
+  }, [data, reset]);
 
   return (
     <AppLayout breadcrumbList={["User", data.userId ?? "...", "View"]}>
