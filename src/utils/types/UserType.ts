@@ -30,7 +30,7 @@ export type UserFormType = {
   isDeleted: boolean;
   version: number;
   createdBy: string;
-  createdDate: Date;
+  createdDate: string;
   updatedBy: string;
-  updatedDate: Date;
+  updatedDate: string;
 };

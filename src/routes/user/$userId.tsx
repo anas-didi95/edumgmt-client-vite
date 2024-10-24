@@ -12,7 +12,11 @@ const UserFormPage: FC<unknown> = () => {
   const { userId } = Route.useParams();
   const { data = {} as UserFormType } = UserService.useGetUser(userId);
   const { register } = useForm<UserFormType>({
-    values: data,
+    values: {
+      ...data,
+      createdDate: new Date(data.createdDate).toLocaleString(),
+      updatedDate: new Date(data.updatedDate).toLocaleString(),
+    },
     disabled: true,
   });
 
