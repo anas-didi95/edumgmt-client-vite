@@ -6,6 +6,7 @@ import Card from "../../components/Card";
 import FormInput from "../../components/FormInput";
 import { UserFormType } from "../../utils/types/UserType";
 import { useForm } from "react-hook-form";
+import FormCheckbox from "../../components/FormCheckbox";
 
 const UserFormPage: FC<unknown> = () => {
   const { userId } = Route.useParams();
@@ -47,10 +48,9 @@ const UserFormPage: FC<unknown> = () => {
               />
             </div>
             <div className="column is-4">
-              <FormInput
+              <FormCheckbox
                 register={register("isDeleted")}
                 label="Is Deleted?"
-                type="text"
               />
             </div>
           </div>
