@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import UserService from "../../utils/services/UserService";
 import AppLayout from "../../layouts/AppLayout";
@@ -10,15 +10,9 @@ import { useForm } from "react-hook-form";
 const UserFormPage: FC<unknown> = () => {
   const { userId } = Route.useParams();
   const { data = {} as UserFormType } = UserService.useGetUser(userId);
-  const { register, reset } = useForm<UserFormType>({
-    defaultValues: useMemo(() => {
-      return data;
-    }, [data]),
+  const { register } = useForm<UserFormType>({
+    values: data,
   });
-
-  useEffect(() => {
-    reset(data);
-  }, [data, reset]);
 
   return (
     <AppLayout breadcrumbList={["User", data.userId ?? "...", "View"]}>
