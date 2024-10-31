@@ -26,7 +26,7 @@ const useSearchUserList = (
       search.name,
     ];
   }, [search.page, search.size, search.userId, search.name]);
-  const { data } = useQuery({
+  const { data, isFetched } = useQuery({
     enabled,
     queryKey,
     queryFn: async () => {
@@ -50,7 +50,7 @@ const useSearchUserList = (
     }
   };
 
-  return { search, data, queryKey, execute };
+  return { data, isFetched, execute };
 };
 
 const useGetUser = (userId: string) => {

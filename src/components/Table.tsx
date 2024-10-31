@@ -2,10 +2,11 @@ import { FC, ReactNode } from "react";
 
 interface ITable {
   headerList: string[];
+  rowCount: number;
   children: ReactNode;
 }
 
-const Table: FC<ITable> = ({ headerList, children }) => (
+const Table: FC<ITable> = ({ headerList, rowCount, children }) => (
   <div className="table-container">
     <table className="table is-striped is-hoverable is-fullwidth">
       <thead>
@@ -15,7 +16,17 @@ const Table: FC<ITable> = ({ headerList, children }) => (
           ))}
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody>
+        {rowCount > 0 ? (
+          children
+        ) : (
+          <tr>
+            <td colSpan={headerList.length} className="has-text-centered">
+              No record found
+            </td>
+          </tr>
+        )}
+      </tbody>
     </table>
   </div>
 );

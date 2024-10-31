@@ -6,7 +6,7 @@ import FormInput from "../components/FormInput";
 import ButtonGroup from "../components/ButtonGroup";
 import Table from "../components/Table";
 import UserService from "../utils/services/UserService";
-import { UserSearchType } from "../utils/types/UserType";
+import { UserSearchResultType, UserSearchType } from "../utils/types/UserType";
 import AppLayout from "../layouts/AppLayout";
 import { useForm } from "react-hook-form";
 
@@ -19,7 +19,11 @@ const App: FC<unknown> = () => {
       name: "",
     },
   });
-  const { data, execute } = UserService.useSearchUserList(getValues());
+  const {
+    data = {} as UserSearchResultType,
+    isFetched,
+    execute,
+  } = UserService.useSearchUserList(getValues());
 
   const handleSearch = handleSubmit(execute);
   const handleReset = () =>
@@ -58,12 +62,14 @@ const App: FC<unknown> = () => {
           </div>
         </form>
       </Card>
-      {!!data && !!data.resultList && (
+      {isFetched && (
         <>
           <br />
           <Card title="">
-            <Table headerList={["No.", "User Id", "Name"]}>
-              {data.resultList.map((result, idx) => (
+            <Table
+              headerList={["No.", "User Id", "Name"]}
+              rowCount={data?.resultList?.length ?? 0}>
+              {data?.resultList?.map((result, idx) => (
                 <tr key={result.id}>
                   <td>{idx + 1}</td>
                   <td>
