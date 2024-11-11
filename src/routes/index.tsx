@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { FC } from "react";
 import "../styles/app.scss";
 import Card from "../components/Card";
@@ -24,10 +24,12 @@ const App: FC<unknown> = () => {
     isFetched,
     execute,
   } = UserService.useSearchUserList(getValues());
+  const navigate = useNavigate();
 
   const handleSearch = handleSubmit(execute);
   const handleReset = () =>
     reset({ ...getValues(), page: 1, userId: "", name: "" });
+  const handleCreate = () => navigate({ to: "/user/create" });
 
   return (
     <AppLayout breadcrumbList={["User", "Search"]}>
@@ -55,6 +57,12 @@ const App: FC<unknown> = () => {
                     label: "Search",
                     color: "is-success",
                     onClick: handleSearch,
+                  },
+                  {
+                    type: "button",
+                    label: "Create",
+                    color: "is-warning",
+                    onClick: handleCreate,
                   },
                 ]}
               />
