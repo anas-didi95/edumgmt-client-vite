@@ -87,7 +87,9 @@ const UserFormPage: FC<unknown> = () => {
       <Card title="Roles">
         <div className="buttons">
           {data.roles.map((role, idx) => (
-            <span key={`${role}${idx}`} className="tag is-link is-medium">{role}</span>
+            <span key={`${role}${idx}`} className="tag is-link is-medium">
+              {role}
+            </span>
           ))}
         </div>
       </Card>
