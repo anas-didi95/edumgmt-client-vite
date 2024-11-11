@@ -83,6 +83,14 @@ const UserFormPage: FC<unknown> = () => {
           </div>
         </form>
       </Card>
+      <br />
+      <Card title="Roles">
+        <div className="buttons">
+          {data.roles.map((role, idx) => (
+            <span key={`${role}${idx}`} className="tag is-link is-medium">{role}</span>
+          ))}
+        </div>
+      </Card>
     </AppLayout>
   );
 };
