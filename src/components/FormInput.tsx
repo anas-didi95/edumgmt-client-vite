@@ -5,7 +5,7 @@ import { StyleStatus } from "../utils/types/CommonType";
 interface IFormInput {
   register: UseFormRegisterReturn;
   label: string;
-  type: "text";
+  type: "text" | "password";
   placeholder?: string;
   message?: {
     status: StyleStatus;
