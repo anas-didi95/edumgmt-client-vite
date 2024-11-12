@@ -55,6 +55,7 @@ const UserFormPage: FC<unknown> = () => {
               <FormCheckbox
                 register={register("isDeleted")}
                 label="Is Deleted?"
+                value="true"
               />
             </div>
           </div>
@@ -85,13 +86,17 @@ const UserFormPage: FC<unknown> = () => {
       </Card>
       <br />
       <Card title="Roles">
-        <div className="buttons">
-          {data.roles.map((role, idx) => (
-            <span key={`${role}${idx}`} className="tag is-link is-medium">
-              {role}
-            </span>
-          ))}
-        </div>
+        {data.roles ? (
+          <div className="buttons">
+            {data.roles.map((role, idx) => (
+              <span key={`${role}${idx}`} className="tag is-link is-medium">
+                {role}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="content has-text-weight-bold">No roles assigned</p>
+        )}
       </Card>
     </AppLayout>
   );
