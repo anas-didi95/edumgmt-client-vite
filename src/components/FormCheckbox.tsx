@@ -4,6 +4,7 @@ import { StyleStatus } from "../utils/types/CommonType";
 
 interface IFormCheckbox {
   register: UseFormRegisterReturn;
+  value: string;
   label?: string;
   remark?: string;
   message?: {
@@ -14,6 +15,7 @@ interface IFormCheckbox {
 
 const FormCheckbox: FC<IFormCheckbox> = ({
   register,
+  value,
   label,
   remark,
   message,
@@ -22,7 +24,7 @@ const FormCheckbox: FC<IFormCheckbox> = ({
     {!!label && <label className="label">{label}</label>}
     <div className="control">
       <label className="checkbox">
-        <input {...register} type="checkbox" />
+        <input {...register} type="checkbox" value={value} />
         {!!remark && <span>&nbsp;{remark}</span>}
       </label>
     </div>
