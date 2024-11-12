@@ -26,6 +26,8 @@ export type UserFormType = {
   id: string;
   userId: string;
   name: string;
+  password: string;
+  confirmPassword: string;
   roles: string[];
   isDeleted: boolean;
   version: number;
