@@ -7,11 +7,12 @@ import FormInput from "../../components/FormInput";
 import { UserFormType } from "../../utils/types/UserType";
 import { useForm } from "react-hook-form";
 import FormCheckbox from "../../components/FormCheckbox";
+import { Message } from "../../utils/constant";
 
 const UserFormPage: FC<unknown> = () => {
   const { userId } = Route.useParams();
   const { data = {} as UserFormType } = UserService.useGetUser(userId);
-  const { register } = useForm<UserFormType>({
+  const { register, formState: { errors } } = useForm<UserFormType>({
     values: {
       ...data,
       createdDate: new Date(data.createdDate).toLocaleString(),
@@ -27,26 +28,26 @@ const UserFormPage: FC<unknown> = () => {
           <div className="columns">
             <div className="column is-4">
               <FormInput
-                register={register("userId")}
+                state={{ register: register("password", { required: Message.fieldIsRequired() }), error: errors.password }}
                 label="User ID"
                 type="text"
               />
             </div>
             <div className="column is-4">
-              <FormInput register={register("name")} label="Name" type="text" />
+              <FormInput state={{ register: register("name"), error: errors.name }} label="Name" type="text" />
             </div>
           </div>
           <div className="columns">
             <div className="column is-4">
               <FormInput
-                register={register("updatedBy")}
+                state={{ register: register("updatedBy", { required: Message.fieldIsRequired() }), error: errors.updatedBy }}
                 label="Updated By"
                 type="text"
               />
             </div>
             <div className="column is-4">
               <FormInput
-                register={register("updatedDate")}
+                state={{ register: register("updatedDate", { required: Message.fieldIsRequired() }), error: errors.updatedDate }}
                 label="Updated Date"
                 type="text"
               />
@@ -62,21 +63,21 @@ const UserFormPage: FC<unknown> = () => {
           <div className="columns">
             <div className="column is-4">
               <FormInput
-                register={register("createdBy")}
+                state={{ register: register("createdBy"), error: errors.createdBy }}
                 label="Created By"
                 type="text"
               />
             </div>
             <div className="column is-4">
               <FormInput
-                register={register("createdDate")}
+                state={{ register: register("createdDate"), error: errors.createdDate }}
                 label="Created Date"
                 type="text"
               />
             </div>
             <div className="column is-4">
               <FormInput
-                register={register("version")}
+                state={{ register: register("version"), error: errors.version }}
                 label="Version"
                 type="text"
               />

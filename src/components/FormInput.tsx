@@ -1,9 +1,13 @@
 import { FC } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { StyleStatus } from "../utils/types/CommonType";
 
 interface IFormInput {
-  register: UseFormRegisterReturn;
+  state: {
+    register: UseFormRegisterReturn
+    error?: FieldError,
+    isMandatory?: boolean
+  },
   label: string;
   type: "text" | "password";
   placeholder?: string;
@@ -14,24 +18,28 @@ interface IFormInput {
 }
 
 const FormInput: FC<IFormInput> = ({
-  register,
+  state: { register, error, isMandatory = false },
   label,
   type,
   placeholder,
   message,
-}) => (
-  <div className="field">
-    <label className="label">{label}</label>
-    <div className="control">
-      <input
-        {...register}
-        className="input"
-        type={type}
-        placeholder={placeholder ?? label}
-      />
+}) => {
+  console.log("register", register)
+  return (
+    <div className="field">
+      <label className="label">{label}{isMandatory && <span className="has-text-danger">&nbsp;*</span>}</label>
+      <div className="control">
+        <input
+          {...register}
+          className={`input ${!!error?.message && "is-danger"}`}
+          type={type}
+          placeholder={placeholder ?? label}
+        />
+      </div>
+      {!!error?.message && <p className="help is-danger">{error.message}</p>}
+      {!!message && <p className={`help ${message.status}`}>{message.value}</p>}
     </div>
-    {!!message && <p className={`help ${message.status}`}>{message.value}</p>}
-  </div>
-);
+  )
+};
 
 export default FormInput;
