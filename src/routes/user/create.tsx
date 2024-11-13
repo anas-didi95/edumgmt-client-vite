@@ -10,7 +10,11 @@ import FormCheckbox from "../../components/FormCheckbox";
 import { Message } from "../../utils/constant";
 
 const UserCreatePage: FC<unknown> = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<UserFormType>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserFormType>();
 
   const handleCreate = handleSubmit((data) => {
     console.log("[handleCreate] data", data);
@@ -23,28 +27,54 @@ const UserCreatePage: FC<unknown> = () => {
           <div className="columns">
             <div className="column is-4">
               <FormInput
-                state={{ register: register("userId", { required: Message.fieldIsRequired() }), error: errors.userId, isMandatory: true }}
+                state={{
+                  register: register("userId", {
+                    required: Message.fieldIsRequired(),
+                  }),
+                  error: errors.userId,
+                  isMandatory: true,
+                }}
                 label="User ID"
                 type="text"
               />
             </div>
             <div className="column is-4">
               <FormInput
-                state={{ register: register("name", { required: Message.fieldIsRequired() }), error: errors.name, isMandatory: true }}
-                label="Name" type="text" />
+                state={{
+                  register: register("name", {
+                    required: Message.fieldIsRequired(),
+                  }),
+                  error: errors.name,
+                  isMandatory: true,
+                }}
+                label="Name"
+                type="text"
+              />
             </div>
           </div>
           <div className="columns">
             <div className="column is-4">
               <FormInput
-                state={{ register: register("password", { required: Message.fieldIsRequired() }), error: errors.password, isMandatory: true }}
+                state={{
+                  register: register("password", {
+                    required: Message.fieldIsRequired(),
+                  }),
+                  error: errors.password,
+                  isMandatory: true,
+                }}
                 label="Password"
                 type="password"
               />
             </div>
             <div className="column is-4">
               <FormInput
-                state={{ register: register("confirmPassword", { required: Message.fieldIsRequired() }), error: errors.confirmPassword, isMandatory: true }}
+                state={{
+                  register: register("confirmPassword", {
+                    required: Message.fieldIsRequired(),
+                  }),
+                  error: errors.confirmPassword,
+                  isMandatory: true,
+                }}
                 label="Confirm Password"
                 type="password"
               />

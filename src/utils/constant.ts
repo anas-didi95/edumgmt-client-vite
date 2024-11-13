@@ -1,3 +1,3 @@
 export const Message = {
-  fieldIsRequired: () => "This field is mandatory"
-}
+  fieldIsRequired: () => "This field is mandatory",
+};
