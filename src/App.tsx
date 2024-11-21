@@ -10,18 +10,24 @@ import AppLayout from "./layouts/AppLayout";
 import { useForm } from "react-hook-form";
 
 const App: FC<unknown> = () => {
-  const { register, formState: { errors }, reset, handleSubmit, getValues } = useForm<UserSearchType>({
+  const {
+    register,
+    formState: { errors },
+    reset,
+    handleSubmit,
+    getValues,
+  } = useForm<UserSearchType>({
     values: {
       page: 1,
       size: 10,
       userId: "",
       name: "",
-    }
-  })
+    },
+  });
   const { data, execute } = UserService.useSearchUserList({ ...getValues() });
 
-  const handleSearch = handleSubmit(execute)
-  const handleReset = () => reset()
+  const handleSearch = handleSubmit(execute);
+  const handleReset = () => reset();
 
   return (
     <AppLayout breadcrumbList={["User", "Search"]}>
@@ -32,14 +38,18 @@ const App: FC<unknown> = () => {
               <FormInput
                 state={{
                   register: register("userId"),
-                  error: errors.userId
+                  error: errors.userId,
                 }}
                 label="User ID"
                 type="text"
               />
             </div>
             <div className="column is-4">
-              <FormInput state={{ register: register("name"), error: errors.userId }} label="Name" type="text" />
+              <FormInput
+                state={{ register: register("name"), error: errors.userId }}
+                label="Name"
+                type="text"
+              />
             </div>
           </div>
           <div className="columns">
@@ -51,7 +61,7 @@ const App: FC<unknown> = () => {
                     type: "submit",
                     label: "Search",
                     color: "is-success",
-                    onClick: handleSearch
+                    onClick: handleSearch,
                   },
                 ]}
               />
@@ -63,7 +73,9 @@ const App: FC<unknown> = () => {
         <>
           <br />
           <Card title="">
-            <Table headerList={["No.", "User Id", "Name"]} rowCount={data.resultList.length}>
+            <Table
+              headerList={["No.", "User Id", "Name"]}
+              rowCount={data.resultList.length}>
               {data.resultList.map((result, idx) => (
                 <tr key={result.id}>
                   <td>{idx + 1}</td>

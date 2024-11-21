@@ -27,8 +27,7 @@ const App: FC<unknown> = () => {
   const navigate = useNavigate();
 
   const handleSearch = handleSubmit(execute);
-  const handleReset = () =>
-    reset({ ...getValues(), page: 1, userId: "", name: "" });
+  const handleReset = () => reset();
   const handleCreate = () => navigate({ to: "/user/create" });
 
   return (
@@ -39,7 +38,7 @@ const App: FC<unknown> = () => {
             <div className="column is-4">
               <FormInput
                 state={{
-                  register: register("userId")
+                  register: register("userId"),
                 }}
                 label="User ID"
                 type="text"
@@ -48,10 +47,11 @@ const App: FC<unknown> = () => {
             <div className="column is-4">
               <FormInput
                 state={{
-                  register: register("name")
-
+                  register: register("name"),
                 }}
-                label="Name" type="text" />
+                label="Name"
+                type="text"
+              />
             </div>
           </div>
           <div className="columns">
