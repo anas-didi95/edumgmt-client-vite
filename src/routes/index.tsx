@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 
 const App: FC<unknown> = () => {
   const { register, handleSubmit, getValues, reset } = useForm<UserSearchType>({
-    defaultValues: {
+    values: {
       page: 1,
       size: 10,
       userId: "",
@@ -38,13 +38,20 @@ const App: FC<unknown> = () => {
           <div className="columns">
             <div className="column is-4">
               <FormInput
-                register={register("userId")}
+                state={{
+                  register: register("userId")
+                }}
                 label="User ID"
                 type="text"
               />
             </div>
             <div className="column is-4">
-              <FormInput register={register("name")} label="Name" type="text" />
+              <FormInput
+                state={{
+                  register: register("name")
+
+                }}
+                label="Name" type="text" />
             </div>
           </div>
           <div className="columns">

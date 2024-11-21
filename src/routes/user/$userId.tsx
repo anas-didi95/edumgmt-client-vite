@@ -32,7 +32,7 @@ const UserFormPage: FC<unknown> = () => {
             <div className="column is-4">
               <FormInput
                 state={{
-                  register: register("password", {
+                  register: register("userId", {
                     required: Message.fieldIsRequired(),
                   }),
                   error: errors.password,
