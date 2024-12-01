@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { useAlertStore } from "../utils/store";
+import { useAlertStore } from "../stores/alert-store";
 
 export const useAxios = (contextPath: string, basePath: string = "") => {
   const instance = axios.create({
