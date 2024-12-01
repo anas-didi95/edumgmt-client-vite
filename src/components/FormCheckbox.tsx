@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { StyleStatus } from "../utils/types/CommonType";
+import { TStyleStatus } from "../types/common-type";
 
 interface IFormCheckbox {
   register: UseFormRegisterReturn;
@@ -8,7 +8,7 @@ interface IFormCheckbox {
   label?: string;
   remark?: string;
   message?: {
-    status: StyleStatus;
+    status: TStyleStatus;
     value: string;
   };
 }

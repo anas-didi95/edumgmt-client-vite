@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { TStyleStatus } from "../types/common-type";
 import { useAlertStore } from "../utils/store";
-import { StyleStatus } from "../utils/types/CommonType";
 
-const AlertTitle: { [key in StyleStatus]: string } = {
+const AlertTitle: { [key in TStyleStatus]: string } = {
   "is-success": "Success",
   "is-warning": "Warning",
   "is-danger": "Error",

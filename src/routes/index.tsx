@@ -8,19 +8,21 @@ import Table from "../components/Table";
 import AppLayout from "../layouts/AppLayout";
 import UserService from "../services/user-service";
 import "../styles/app.scss";
-import { UserSearchResultType, UserSearchType } from "../utils/types/UserType";
+import { TUserSearchResultType, TUserSearchType } from "../types/user-type";
 
 const App: FC<unknown> = () => {
-  const { register, handleSubmit, getValues, reset } = useForm<UserSearchType>({
-    values: {
-      page: 1,
-      size: 10,
-      userId: "",
-      name: "",
+  const { register, handleSubmit, getValues, reset } = useForm<TUserSearchType>(
+    {
+      values: {
+        page: 1,
+        size: 10,
+        userId: "",
+        name: "",
+      },
     },
-  });
+  );
   const {
-    data = {} as UserSearchResultType,
+    data = {} as TUserSearchResultType,
     isFetched,
     execute,
   } = UserService.useSearchUserList(getValues());

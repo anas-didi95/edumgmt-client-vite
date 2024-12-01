@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import type {
-  UserFormType,
-  UserSearchResultType,
-  UserSearchType,
-} from "../utils/types/UserType";
+  TUserFormType,
+  TUserSearchResultType,
+  TUserSearchType,
+} from "../types/user-type";
 import { useAxios } from "./axios-service";
 
 const CONTEXT_PATH = import.meta.env.VITE_APP_EDUMGMT_URL;
 const BASE_PATH = "/user";
 
 const useSearchUserList = (
-  param: UserSearchType = { page: 1, size: 10, userId: "", name: "" },
+  param: TUserSearchType = { page: 1, size: 10, userId: "", name: "" },
 ) => {
   const axios = useAxios(CONTEXT_PATH, BASE_PATH);
-  const [search, setSearch] = useState<UserSearchType>({ ...param });
+  const [search, setSearch] = useState<TUserSearchType>({ ...param });
   const [enabled, setEnabled] = useState(false);
   const queryKey = useMemo(() => {
     return [
@@ -34,7 +34,7 @@ const useSearchUserList = (
         const response = await axios.get(
           `?page=${search.page}&size=${search.size}&userId=${search.userId}&name=${search.name}`,
         );
-        const responseBody: UserSearchResultType = response.data;
+        const responseBody: TUserSearchResultType = response.data;
         return responseBody;
       } catch (error) {
         console.error("Fail to search user!", error);
@@ -43,7 +43,7 @@ const useSearchUserList = (
     },
   });
 
-  const execute = (param: UserSearchType) => {
+  const execute = (param: TUserSearchType) => {
     setSearch((prev) => ({ ...prev, ...param }));
     if (!enabled) {
       setEnabled(true);
@@ -61,7 +61,7 @@ const useGetUser = (userId: string) => {
     queryFn: async () => {
       try {
         const response = await axios.get(`/${userId}`);
-        const responseBody: UserFormType = response.data;
+        const responseBody: TUserFormType = response.data;
         return responseBody;
       } catch (error) {
         console.error("Fail to get user!", error);

@@ -6,8 +6,8 @@ import Card from "../../components/Card";
 import FormCheckbox from "../../components/FormCheckbox";
 import FormInput from "../../components/FormInput";
 import AppLayout from "../../layouts/AppLayout";
+import { TUserFormType } from "../../types/user-type";
 import { Message } from "../../utils/constant";
-import { UserFormType } from "../../utils/types/UserType";
 
 const UserCreatePage: FC<unknown> = () => {
   const {
@@ -15,7 +15,7 @@ const UserCreatePage: FC<unknown> = () => {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm<UserFormType>();
+  } = useForm<TUserFormType>();
 
   const handleCreate = handleSubmit((data) => {
     console.log("[handleCreate] data", data);

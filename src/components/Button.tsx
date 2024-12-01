@@ -1,11 +1,11 @@
 import { FC, MouseEvent } from "react";
-import { StyleStatus } from "../utils/types/CommonType";
+import { TStyleStatus } from "../types/common-type";
 
 export interface IButton {
   type: "button" | "submit" | "reset";
   label: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
-  color?: StyleStatus;
+  color?: TStyleStatus;
 }
 
 const Button: FC<IButton> = ({ type, label, color, onClick }) => (

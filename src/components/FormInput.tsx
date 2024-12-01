@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
-import { StyleStatus } from "../utils/types/CommonType";
+import { TStyleStatus } from "../types/common-type";
 
 interface IFormInput {
   state: {
@@ -12,7 +12,7 @@ interface IFormInput {
   type: "text" | "password";
   placeholder?: string;
   message?: {
-    status: StyleStatus;
+    status: TStyleStatus;
     value: string;
   };
 }

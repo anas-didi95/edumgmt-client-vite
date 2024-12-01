@@ -1,11 +1,11 @@
-import { SearchType } from "./CommonType";
+import { TSearchType } from "./common-type";
 
-export type UserSearchType = SearchType & {
+export type TUserSearchType = TSearchType & {
   userId: string;
   name: string;
 };
 
-export type UserSearchResultType = {
+export type TUserSearchResultType = {
   resultList: [
     {
       id: string;
@@ -22,7 +22,7 @@ export type UserSearchResultType = {
   };
 };
 
-export type UserFormType = {
+export type TUserFormType = {
   id: string;
   userId: string;
   name: string;

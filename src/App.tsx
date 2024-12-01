@@ -7,7 +7,7 @@ import Table from "./components/Table";
 import AppLayout from "./layouts/AppLayout";
 import UserService from "./services/user-service";
 import "./styles/app.scss";
-import { UserSearchType } from "./utils/types/UserType";
+import { TUserSearchType } from "./types/user-type";
 
 const App: FC<unknown> = () => {
   const {
@@ -16,7 +16,7 @@ const App: FC<unknown> = () => {
     reset,
     handleSubmit,
     getValues,
-  } = useForm<UserSearchType>({
+  } = useForm<TUserSearchType>({
     values: {
       page: 1,
       size: 10,

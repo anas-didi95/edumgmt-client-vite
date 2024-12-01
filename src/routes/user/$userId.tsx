@@ -6,16 +6,16 @@ import FormCheckbox from "../../components/FormCheckbox";
 import FormInput from "../../components/FormInput";
 import AppLayout from "../../layouts/AppLayout";
 import UserService from "../../services/user-service";
+import { TUserFormType } from "../../types/user-type";
 import { Message } from "../../utils/constant";
-import { UserFormType } from "../../utils/types/UserType";
 
 const UserFormPage: FC<unknown> = () => {
   const { userId } = Route.useParams();
-  const { data = {} as UserFormType } = UserService.useGetUser(userId);
+  const { data = {} as TUserFormType } = UserService.useGetUser(userId);
   const {
     register,
     formState: { errors },
-  } = useForm<UserFormType>({
+  } = useForm<TUserFormType>({
     values: {
       ...data,
       createdDate: new Date(data.createdDate).toLocaleString(),

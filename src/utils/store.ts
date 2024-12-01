@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { AlertStoreType } from "./types/StoreType";
+import { TAlertStoreType } from "../types/store-type";
 
-const useAlertStore = create<AlertStoreType>((set) => ({
+const useAlertStore = create<TAlertStoreType>((set) => ({
   data: {
     isShow: false,
     message: "",
