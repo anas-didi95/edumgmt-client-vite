@@ -1,8 +1,8 @@
 import { FC, ReactNode } from "react";
+import Alert from "../components/Alert";
+import Breadcrumb from "../components/Breadcrumb";
 import Navbar from "../components/Navbar";
 import PWABadge from "../PWABadge";
-import Breadcrumb from "../components/Breadcrumb";
-import Alert from "../components/Alert";
 
 interface IAppLayout {
   children: ReactNode;

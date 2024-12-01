@@ -12,8 +12,8 @@
 
 import { Route as rootRoute } from "./routes/__root";
 import { Route as IndexImport } from "./routes/index";
-import { Route as UserCreateImport } from "./routes/user/create";
 import { Route as UserUserIdImport } from "./routes/user/$userId";
+import { Route as UserCreateImport } from "./routes/user/create";
 
 // Create/Update Routes
 

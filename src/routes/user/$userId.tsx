@@ -1,13 +1,13 @@
-import { FC } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import UserService from "../../utils/services/UserService";
-import AppLayout from "../../layouts/AppLayout";
-import Card from "../../components/Card";
-import FormInput from "../../components/FormInput";
-import { UserFormType } from "../../utils/types/UserType";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
+import Card from "../../components/Card";
 import FormCheckbox from "../../components/FormCheckbox";
+import FormInput from "../../components/FormInput";
+import AppLayout from "../../layouts/AppLayout";
 import { Message } from "../../utils/constant";
+import UserService from "../../utils/services/UserService";
+import { UserFormType } from "../../utils/types/UserType";
 
 const UserFormPage: FC<unknown> = () => {
   const { userId } = Route.useParams();

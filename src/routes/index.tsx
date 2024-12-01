@@ -1,14 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { FC } from "react";
-import "../styles/app.scss";
+import { useForm } from "react-hook-form";
+import ButtonGroup from "../components/ButtonGroup";
 import Card from "../components/Card";
 import FormInput from "../components/FormInput";
-import ButtonGroup from "../components/ButtonGroup";
 import Table from "../components/Table";
+import AppLayout from "../layouts/AppLayout";
+import "../styles/app.scss";
 import UserService from "../utils/services/UserService";
 import { UserSearchResultType, UserSearchType } from "../utils/types/UserType";
-import AppLayout from "../layouts/AppLayout";
-import { useForm } from "react-hook-form";
 
 const App: FC<unknown> = () => {
   const { register, handleSubmit, getValues, reset } = useForm<UserSearchType>({
