@@ -13,6 +13,7 @@ const UserCreatePage: FC<unknown> = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<UserFormType>();
 
@@ -71,6 +72,9 @@ const UserCreatePage: FC<unknown> = () => {
                 state={{
                   register: register("confirmPassword", {
                     required: Message.fieldIsRequired(),
+                    validate: (val) =>
+                      val === getValues("password") ||
+                      Message.passwordNotMatched(),
                   }),
                   error: errors.confirmPassword,
                   isMandatory: true,
