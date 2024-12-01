@@ -1,5 +1,6 @@
 .vscode-server/
 .env
+./src/routeTree.gen.ts
 
 # Logs
 logs
