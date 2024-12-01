@@ -4,8 +4,8 @@ import type {
   UserFormType,
   UserSearchResultType,
   UserSearchType,
-} from "../types/UserType";
-import { useAxios } from "./AxiosService";
+} from "../utils/types/UserType";
+import { useAxios } from "./axios-service";
 
 const CONTEXT_PATH = import.meta.env.VITE_APP_EDUMGMT_URL;
 const BASE_PATH = "/user";

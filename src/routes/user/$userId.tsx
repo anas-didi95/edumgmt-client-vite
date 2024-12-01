@@ -5,8 +5,8 @@ import Card from "../../components/Card";
 import FormCheckbox from "../../components/FormCheckbox";
 import FormInput from "../../components/FormInput";
 import AppLayout from "../../layouts/AppLayout";
+import UserService from "../../services/user-service";
 import { Message } from "../../utils/constant";
-import UserService from "../../utils/services/UserService";
 import { UserFormType } from "../../utils/types/UserType";
 
 const UserFormPage: FC<unknown> = () => {

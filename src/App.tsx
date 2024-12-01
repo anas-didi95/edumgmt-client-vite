@@ -5,8 +5,8 @@ import Card from "./components/Card";
 import FormInput from "./components/FormInput";
 import Table from "./components/Table";
 import AppLayout from "./layouts/AppLayout";
+import UserService from "./services/user-service";
 import "./styles/app.scss";
-import UserService from "./utils/services/UserService";
 import { UserSearchType } from "./utils/types/UserType";
 
 const App: FC<unknown> = () => {
